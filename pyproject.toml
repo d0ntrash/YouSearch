@@ -6,6 +6,8 @@ authors = ["Konstantin <buecheko@protonmail.ch>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+youtube_transcript_api = "^0.3.0"
+bs4 = "^0.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
