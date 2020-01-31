@@ -1,1 +1,8 @@
 * YouSearch
+** Requirement
+   To play videos directly from the cli you need to install mpv and youtube-dl.
+
+   On Arch based systems this can be done using pacman.
+   #+BEGIN_SRC bash
+   sudo pacman -S mpv youtube-dl
+   #+END_SRC
