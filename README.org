@@ -3,7 +3,7 @@
 
 YouSearch is an interactive CLI to fetch transcripts of YouTube videos, 
 browse them and jump to the corresponding position in the video.
-** Requirement
+** Requirements
    To play videos directly from the cli you need to install mpv and youtube-dl.
 
    On Arch based systems this can be done using pacman.
