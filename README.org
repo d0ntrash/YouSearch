@@ -1,4 +1,6 @@
-* YouSearch
+#+TITLE: YouSearch
+#+AUTHOR: Konstantin Bücheler
+
 YouSearch is an interactive CLI to fetch transcripts of YouTube videos, 
 browse them and jump to the corresponding position in the video.
 ** Requirement
