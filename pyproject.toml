@@ -2,7 +2,7 @@
 name = "yousearch"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Konstantin <buecheko@protonmail.ch>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
