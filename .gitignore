@@ -1,0 +1,4 @@
+yousearch.egg-info
+yousearch/__pycache__
+yousearch/urllib.*
+tests/__pycache__
