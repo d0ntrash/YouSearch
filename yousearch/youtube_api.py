@@ -45,7 +45,7 @@ def get_video_title(url):
 
 
 class Video:
-    def __init__(self, url, lang=None):
+    def __init__(self, url):
         self.url = url
         self.vid = extract_vid(self.url)
         self.transcript_dict = get_transcript(self.vid)
