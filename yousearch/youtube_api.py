@@ -14,7 +14,7 @@ def extract_vid(url):
     return query['v'][0]
 
 
-def get_transcript(vid, lang=None):
+def get_transcript(vid, lang=["en"]):
     """Returns a transcript for a specific Video ID
 
     Takes a video ID and returns its Trascript in
