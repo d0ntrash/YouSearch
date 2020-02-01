@@ -59,7 +59,7 @@ class Video:
         f.write(self.transcript)
         return
 
-    def search_word(self, word):
+    def search_string(self, word):
         """Very simple search procedure.
         """
         results = [i for i in self.transcript_dict if
