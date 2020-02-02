@@ -7,6 +7,8 @@ class Cli():
     def __init__(self):
         self.screen = curses.initscr()
         self.rows, self.cols = self.screen.getmaxyx()
+        self.exit_result_screen = False
+        self.exit_search_screen = False
         curses.noecho()
 
     def show_start_screen(self):
@@ -31,12 +33,15 @@ class Cli():
     def get_direction(self, pad):
         while True:
             key = pad.getch()
-            if key == curses.KEY_UP:
+            if key == curses.KEY_UP or key == 16:
                 return -1
-            if key == curses.KEY_DOWN:
+            if key == curses.KEY_DOWN or key == 14:
                 return 1
             if key == curses.KEY_ENTER or key == 10:
                 return 2
+            if key == ord('q'):
+                self.exit_result_screen = True
+                return 3
 
     def show_search_results(self, results):
         self.screen.clear()
@@ -52,7 +57,7 @@ class Cli():
             line_pointer += 1
 
         enter_flag = False
-        while not enter_flag:
+        while not enter_flag and not self.exit_result_screen:
             pad.move(cursor_pointer, 0)
             pad.chgat(curses.A_REVERSE)
             if cursor_pointer >= self.rows:
@@ -77,18 +82,22 @@ class Cli():
         while True:
             url = self.show_start_screen()
             video = youtube_api.Video(url)
-            keystring = self.show_browse_screen()
-            search_result = video.search_string(keystring)
-            if len(search_result) == 0:
-                continue
-            result_index = self.show_search_results(search_result)
-            self.start_video_screen()
-            mpv_api.start_video(url, search_result[result_index]["start"])
 
-    def test_pad(self):
-        self.pad.addstr(5, 0, "Hallo")
-        self.pad.refresh(0, 0, 0, 0, self.rows, self.cols)
-        curses.napms(2000)
+            while not self.exit_search_screen:
+                keystring = self.show_browse_screen()
+                search_result = video.search_string(keystring)
+                if len(search_result) == 0:
+                    continue
+
+                while not self.exit_result_screen:
+                    result_index = self.show_search_results(search_result)
+                    if not self.exit_result_screen:
+                        self.start_video_screen()
+                        mpv_api.start_video(
+                            url, search_result[result_index]["start"])
+
+                self.exit_result_screen = False
+            self.exit_search_screen = False
 
 
 cli = Cli()
