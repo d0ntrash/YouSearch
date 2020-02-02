@@ -102,5 +102,10 @@ class Cli():
             self.exit_search_screen = False
 
 
-cli = Cli()
-cli.cli()
+def main():
+    cli = Cli()
+    cli.cli()
+
+
+if __name__ == '__main__':
+    main()
