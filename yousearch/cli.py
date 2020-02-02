@@ -94,7 +94,9 @@ class Cli():
                     if not self.exit_result_screen:
                         self.start_video_screen()
                         mpv_api.start_video(
-                            url, search_result[result_index]["start"])
+                            url, search_result[result_index]["start"] - 1.5)
+                        self.screen.clear()
+                        self.screen.refresh()
 
                 self.exit_result_screen = False
             self.exit_search_screen = False
