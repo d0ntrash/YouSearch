@@ -13,5 +13,6 @@ def start_video(url, offset=0):
 
     TODO: Error Handling
     """
-    subprocess.run(["mpv", url, f"--start={offset}"] + config.MPV_OPTIONS)
+    subprocess.run(
+        ["mpv", url, f"--start={offset}"] + config.MPV_OPTIONS, stdout=subprocess.DEVNULL)
     return
