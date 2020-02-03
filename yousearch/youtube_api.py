@@ -36,7 +36,10 @@ def get_transcript(vid, lang=["en"]):
 
     TODO: Error handling
     """
-    return YouTubeTranscriptApi.get_transcript(vid, languages=lang)
+    try:
+        return YouTubeTranscriptApi.get_transcript(vid, languages=lang)
+    except:
+        return
 
 
 def get_video_title(url):
@@ -57,6 +60,8 @@ class Video:
 
     def fetch_transcript(self):
         self.transcript_dict = get_transcript(self.vid)
+        if self.transcript_dict is None:
+            return
         self.transcript = ' '.join([i['text'] for i in self.transcript_dict])
         self.title = get_video_title(self.url)
 

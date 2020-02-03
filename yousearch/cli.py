@@ -89,7 +89,14 @@ class Cli():
                 self.screen.refresh()
                 curses.napms(1000)
                 continue
+
             video.fetch_transcript()
+            if video.transcript_dict is None:
+                self.screen.clear()
+                self.screen.addstr(1, 0, "No transcript available!")
+                self.screen.refresh()
+                curses.napms(1000)
+                continue
 
             while not self.exit_search_screen:
                 keystring = self.show_browse_screen()
