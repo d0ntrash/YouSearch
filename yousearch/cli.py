@@ -75,13 +75,21 @@ class Cli():
 
     def start_video_screen(self):
         self.screen.clear()
-        self.screen.addstr("Starting video...")
+        self.screen.addstr("Starting video...\n")
+        self.screen.addstr("This might take a few seconds.")
         self.screen.refresh()
 
     def cli(self):
         while True:
             url = self.show_start_screen()
             video = youtube_api.Video(url)
+            if video.vid is None:
+                self.screen.clear()
+                self.screen.addstr(1, 0, "Invalid URL!")
+                self.screen.refresh()
+                curses.napms(1000)
+                continue
+            video.fetch_transcript()
 
             while not self.exit_search_screen:
                 keystring = self.show_browse_screen()

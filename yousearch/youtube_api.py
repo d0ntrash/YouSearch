@@ -9,9 +9,12 @@ import os
 def extract_vid(url):
     """Extracts the video id from a Youtube URL
     """
-    url_data = urllib.parse.urlparse(url)
-    query = urllib.parse.parse_qs(url_data.query)
-    return query['v'][0]
+    try:
+        url_data = urllib.parse.urlparse(url)
+        query = urllib.parse.parse_qs(url_data.query)
+        return query['v'][0]
+    except KeyError:
+        return
 
 
 def get_transcript(vid, lang=["en"]):
@@ -48,6 +51,11 @@ class Video:
     def __init__(self, url):
         self.url = url
         self.vid = extract_vid(self.url)
+        self.transcript_dict = None
+        self.transcript = None
+        self.title = None
+
+    def fetch_transcript(self):
         self.transcript_dict = get_transcript(self.vid)
         self.transcript = ' '.join([i['text'] for i in self.transcript_dict])
         self.title = get_video_title(self.url)
