@@ -102,6 +102,10 @@ class Cli():
                 keystring = self.show_browse_screen()
                 search_result = video.search_string(keystring)
                 if len(search_result) == 0:
+                    self.screen.clear()
+                    self.screen.addstr("No match found!")
+                    self.screen.refresh()
+                    curses.napms(1000)
                     continue
 
                 while not self.exit_result_screen:
