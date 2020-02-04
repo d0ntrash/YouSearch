@@ -1,7 +1,9 @@
 [tool.poetry]
 name = "yousearch"
-version = "0.1.0"
+version = "0.1.4"
 description = "Interactive CLI to fetch and browse transcripts of YouTube videos"
+homepage = "https://github.com/buecheko/YouSearch"
+repository = "https://github.com/buecheko/YouSearch"
 authors = ["Konstantin <buecheko@protonmail.ch>"]
 
 [tool.poetry.dependencies]
