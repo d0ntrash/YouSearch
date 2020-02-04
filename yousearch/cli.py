@@ -84,6 +84,7 @@ class Cli():
             url = self.show_start_screen()
             video = youtube_api.Video(url)
             if video.vid is None:
+                # Continue if the video id can't be extracted
                 self.screen.clear()
                 self.screen.addstr(1, 0, "Invalid URL!")
                 self.screen.refresh()
@@ -91,6 +92,7 @@ class Cli():
                 continue
 
             video.fetch_transcript()
+            # Continue if the transcript can be fetched
             if video.transcript_dict is None:
                 self.screen.clear()
                 self.screen.addstr(1, 0, "No transcript available!")
@@ -102,6 +104,7 @@ class Cli():
                 keystring = self.show_browse_screen()
                 search_result = video.search_string(keystring)
                 if len(search_result) == 0:
+                    # continue if no match is found
                     self.screen.clear()
                     self.screen.addstr("No match found!")
                     self.screen.refresh()
