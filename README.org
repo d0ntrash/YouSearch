@@ -2,7 +2,10 @@
 #+AUTHOR: Konstantin Bücheler
 
 YouSearch is an interactive CLI to fetch transcripts of YouTube videos, 
-browse them and jump to the corresponding position in the video.
+browse them and jump to the corresponding position in the video.\\
+
+This is still work in progress and comes with a few bugs. 
+However, the core functions should already work.
 ** Requirements
    To play videos directly from the cli you need to install mpv and youtube-dl.
 
@@ -10,3 +13,21 @@ browse them and jump to the corresponding position in the video.
    #+BEGIN_SRC bash
    sudo pacman -S mpv youtube-dl
    #+END_SRC
+** Installation
+*** Using pip
+    #+BEGIN_SRC bash
+    pip install yousearch
+
+    # Run it
+    python -m yousearch
+    #+END_SRC
+*** Using poetry
+    #+BEGIN_SRC bash
+    git clone https://github.com/buecheko/YouSearch.git
+    cd YouSearch
+    
+    poetry install
+    
+    # Run it 
+    poetry run yousearch
+    #+END_SRC
