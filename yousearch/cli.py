@@ -54,6 +54,8 @@ class Cli():
         for result in results:
             pad.addstr(line_pointer, 1,
                        f"{line_pointer - 1}. {result['text']}")
+            pad.addstr(line_pointer, self.cols - 20,
+                       beautify_startpoint(result['start']))
             line_pointer += 1
 
         enter_flag = False
@@ -122,6 +124,12 @@ class Cli():
 
                 self.exit_result_screen = False
             self.exit_search_screen = False
+
+
+def beautify_startpoint(seconds):
+    m, s = divmod(int(seconds), 60)
+    h, m = divmod(m, 60)
+    return f"{h}:{m:02d}:{s:02d}" if h else f"  {m:02d}:{s:02d}"
 
 
 def main():
