@@ -139,7 +139,7 @@ def beautify_startpoint(seconds):
 
 def main():
     cli = Cli()
-    cli.cli()
+    curses.wrapper(cli.cli())
 
 
 if __name__ == '__main__':
