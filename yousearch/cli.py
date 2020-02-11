@@ -11,6 +11,9 @@ class Cli():
         self.exit_search_screen = False
         curses.noecho()
 
+    def refresh_window_size(self):
+        self.rows, self.cols = self.screen.getmaxyx()
+
     def show_start_screen(self):
         self.screen.clear()
         self.screen.addstr("Welcome to YouSearch!\n\n")
@@ -103,6 +106,7 @@ class Cli():
                 continue
 
             while not self.exit_search_screen:
+                self.refresh_window_size()
                 keystring = self.show_browse_screen()
                 search_result = video.search_string(keystring)
                 if len(search_result) == 0:
@@ -114,6 +118,7 @@ class Cli():
                     continue
 
                 while not self.exit_result_screen:
+                    self.refresh_window_size()
                     result_index = self.show_search_results(search_result)
                     if not self.exit_result_screen:
                         self.start_video_screen()
